@@ -12,16 +12,19 @@ spring:
           uri: lb://ACTIVITY-SERVICE
           predicates:
             - Path=/api/v1/activities/**
+            - Path=/v3/api-docs/activity/**
 
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
             - Path=/api/v1/users/**
+            - Path=/v3/api-docs/user/**
 
         - id: ai-service
           uri: lb://AI-SERVICE
           predicates:
             - Path=/api/v1/recommendations/**
+            - Path=/v3/api-docs/ai/**
 
 eureka:
   client:

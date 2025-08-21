@@ -35,9 +35,10 @@ public class SecurityConfig {
                                         "/api/v1/recommendations/v3/api-docs",
                                         "/ai-service/v3/api-docs",
                                         "/activity-service/v3/api-docs",
-                                        "/user-service/v3/api-docs"
+                                        "/user-service/v3/api-docs",
+                                        "/swagger-ui.html"
                                 ).permitAll()
-                                .anyExchange().permitAll()
+                                .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 .build();
