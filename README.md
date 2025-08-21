@@ -82,15 +82,6 @@ Swagger UI is available for each service:
 2. Activity is saved to MongoDB and published to RabbitMQ.
 3. AI Service consumes the event, generates a recommendation, and stores it.
 
----
-
-## Contributing
-
-1. Fork the repository.
-2. Create your feature branch (`git checkout -b feature/YourFeature`).
-3. Commit your changes.
-4. Push to the branch.
-5. Open a pull request.
 
 ---
 
