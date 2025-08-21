@@ -1,0 +1,40 @@
+spring:
+
+  datasource:
+      url: jdbc:postgresql://localhost:5432/fitness_user_db
+      username: postgres
+      password: 1Shadow@24434!
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    data-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+server:
+  port: 8081
+
+eureka:
+    client:
+        register-with-eureka: true
+        fetch-registry: true
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+    instance:
+        prefer-ip-address: true
+        hostname: localhost
+    aws:
+        enabled: false
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs

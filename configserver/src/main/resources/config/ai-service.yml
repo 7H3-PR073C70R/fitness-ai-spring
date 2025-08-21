@@ -1,0 +1,67 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fitness_ai_db
+    username: postgres
+    password: 1Shadow@24434!
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    data-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+  data:
+    rabbitmq:
+      host: localhost
+      port: 15672
+      username: guest
+      password: guest
+
+server:
+  port: 8083
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+  aws:
+    enabled: false
+
+rabbitmq:
+  exchange:
+    name: fitness.exchange
+  queue:
+    name: activity.queue
+  routing:
+    key: activity.tracking
+
+generic:
+  api:
+    url: ${GEMINI_API_URL}
+    key: ${GEMINI_API_KEY}
+  ai:
+    model:
+      name: gpt-3.5-turbo
+      temperature: 0.7
+      max-tokens: 1500
+      top-p: 1.0
+      frequency-penalty: 0.0
+      presence-penalty: 0.0
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs

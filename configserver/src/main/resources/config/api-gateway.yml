@@ -1,0 +1,49 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8181/realms/fitness-oauth2/protocol/openid-connect/certs
+          jwk-set-uri: http://localhost:8181/realms/fitness-oauth2/protocol/openid-connect/certs
+  cloud:
+    gateway:
+      routes:
+        - id: activity-service
+          uri: lb://ACTIVITY-SERVICE
+          predicates:
+            - Path=/api/v1/activities/**
+
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/v1/users/**
+
+        - id: ai-service
+          uri: lb://AI-SERVICE
+          predicates:
+            - Path=/api/v1/recommendations/**
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+  aws:
+    enabled: false
+
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: Activity Service
+        url: /activity-service/v3/api-docs
+      - name: User Service
+        url: /user-service/v3/api-docs
+      - name: AI Service
+        url: /ai-service/v3/api-docs
